@@ -75,12 +75,33 @@ public class Pile implements PileI {
     }
 
     public boolean equals(Object o) {
-        // a completer
-          for(int i=ptr-1;i>=0;i--){
-            if(this.zone[i]!= o)
-                return false;
+        if(this==o)
+            return true;
+            
+        if(!(o instanceof Pile))
+            return false;
+        
+        Pile p1 = (Pile) o;
+        if(p1.taille() == this.taille() && p1.capacite()==this.capacite()){
+            boolean sontEgale=false;
+            for(int i=zone.length -1;i>=0;i--){
+                Object tmp =zone[i];
+                boolean egal=false;
+                for(int j =zone.length-1;j>=0;j--){
+                     if(tmp==p1.zone[i]){
+                         egal=true;
+                    }
+                }
+                if(egal) 
+                    sontEgale=true;
+                else 
+                    return false;
+                    
+            }
+            return true;
         }
-        return true;
+       
+        return false;
     }
 
     // fonction fournie

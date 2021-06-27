@@ -21,6 +21,11 @@ public class Pile2 implements PileI {
     public Pile2(int taille) {
         // prevoir le cas <=0
         // a completer
+         if(taille <=0) 
+            taille = CAPACITE_PAR_DEFAUT;
+        
+        stk = new Stack<Object>();
+        stk.setSize(taille);
     }
 
     // constructeur fourni
@@ -30,16 +35,23 @@ public class Pile2 implements PileI {
 
     public void empiler(Object o) throws PilePleineException {
         // a completer
+        if(estPleine())
+            throw new PilePleineException();
+        stk.push(o);
     }
 
     public Object depiler() throws PileVideException {
         // a completer
-        return null;
+          if(estVide())
+            throw new PileVideException();
+        return stk.pop();
     }
 
     public Object sommet() throws PileVideException {
         // a completer
-        return null;
+         if(estVide())
+            throw new PileVideException();
+        return stk.peek();
     }
 
     /**
@@ -49,7 +61,14 @@ public class Pile2 implements PileI {
      */
     public boolean estVide() {
         // a completer
-        return false;
+        for(Object v :stk){
+         if(v!=null){
+             return false;
+        }else {
+            return true;
+        }
+       }
+        return true;
     }
 
     /**
@@ -59,6 +78,8 @@ public class Pile2 implements PileI {
      */
     public boolean estPleine() {
         // a completer
+        if(stk.lastElement()!=null) 
+            return true;
         return false;
     }
 
@@ -71,11 +92,24 @@ public class Pile2 implements PileI {
     public String toString() {
         String s = "[";
         // a completer
+       for(Object v :stk){
+         if(v!=null){
+               s= s+v.toString();
+               if(v!=stk.lastElement()) s=s+",";
+        }
+       }
         return s + "]";
     }
 
     public boolean equals(Object o) {
         // a completer
+        for(Object v :stk){
+            
+         if(v!=null){
+              
+              // if(v!=stk.lastElement()) s=s+",";
+        }
+       }
         return false;
     }
 
