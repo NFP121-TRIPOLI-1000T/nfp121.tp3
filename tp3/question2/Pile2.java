@@ -82,14 +82,14 @@ public class Pile2 implements PileI {
      * @return une representation en String d'une pile
      */
     public String toString() {
-        String s = "[";
+           String s = "[";
         // a completer
-       for(Object v :stk){
-         if(v!=null){
-               s= s+v.toString();
-               if(v!=stk.lastElement()) s=s+",";
-        }
-       }
+      for (int i =0; i<this.stk.size();i++){
+         s+= this.stk.get(i).toString();
+         if(i<this.stk.size()-1){
+             s+=", ";    
+         }
+      }
         return s + "]";
     }
 

@@ -74,12 +74,12 @@ public class Pile3 implements PileI {
     public String toString() {
       String s = "[";
         // a completer
-       for(Object d :v){
-         if(d!=null){
-               s=  s+d.toString();
-               if(d != v.lastElement()) s=s+",";
-        }
-       }
+      for (int i =0;i<this.v.size() ;i++){
+         s+= this.v.get(i).toString();
+         if(i>0){
+             s+=", ";    
+         }
+      }
         return s + "]";
     }
 
