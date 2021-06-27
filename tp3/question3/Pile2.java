@@ -77,12 +77,12 @@ public class Pile2<T> implements PileI<T>{
     public String toString() {
         String s = "[";
         // a completer
-       for(Object v :stk){
-         if(v!=null){
-               s= s+v.toString();
-               if(v!=stk.lastElement()) s=s+",";
-        }
-       }
+      for (int i = this.stk.size() -1 ;i>=0;i--){
+         s+= this.stk.get(i).toString();
+         if(i>0){
+             s+=", ";    
+         }
+      }
         return s + "]";
     }
 
