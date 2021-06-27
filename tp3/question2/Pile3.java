@@ -14,57 +14,103 @@ import java.util.Vector;
 public class Pile3 implements PileI {
 
     private Vector<Object> v;
-
+    private int capacite;
     public Pile3() {
-        this(0);
+        this(PileI.CAPACITE_PAR_DEFAUT);
     }
 
     public Pile3(int taille) {
         // traiter le cas <=0
+        if(taille <=0) 
+            taille = CAPACITE_PAR_DEFAUT;
+        
+        this.v = new Vector<Object>();
+        this.capacite=taille;
         // à compléter
     }
 
     public void empiler(Object o) throws PilePleineException {
-        // à compléter
+         // a completer
+        if(estPleine())
+            throw new PilePleineException();
+        this.v.add(o);
     }
 
     public Object depiler() throws PileVideException {
         // à compléter
-        return null;
+        if(estVide())
+            throw new PileVideException();
+        int last = v.lastIndexOf(sommet());
+        return this.v.remove(last);
     }
-
+    
     public Object sommet() throws PileVideException {
         // à compléter
-        return null;
+         if(estVide())
+            throw new PileVideException();
+        return this.v.lastElement();
     }
 
     public int taille() {
         // à compléter
-        return -1;
+        return this.v.size();
     }
 
     public int capacite() {
         // à compléter
-        return -1;
+        return this.capacite;
     }
 
     public boolean estVide() {
         // à compléter
-        return false;
+        return this.v.isEmpty();
     }
 
     public boolean estPleine() {
         // à compléter
-        return false;
+        return this.v.size() == this.capacite;
     }
 
     public String toString() {
-        // à compléter
-        return "";
+      String s = "[";
+        // a completer
+       for(Object d :v){
+         if(d!=null){
+               s=  s+d.toString();
+               if(d != v.lastElement()) s=s+",";
+        }
+       }
+        return s + "]";
     }
 
     public boolean equals(Object o) {
         // à compléter
+         if(this==o)
+            return true;
+            
+        if(!(o instanceof Pile))
+            return false;
+        
+        Pile3 p1 = (Pile3) o;
+        if(p1.taille() == this.taille()){
+            boolean sontEgale=false;
+            for(int i=v.size() -1;i>=0;i--){
+                Object tmp =this.v.get(i);
+                boolean existe=false;
+                for(int j =this.v.size()-1;j>=0;j--){
+                     if(tmp==p1.v.get(i)){
+                         existe=true;
+                    }
+                }
+                if(existe) 
+                    sontEgale=true;
+                else 
+                    return false;
+                    
+            }
+            return true;
+        }
+       
         return false;
     }
 
